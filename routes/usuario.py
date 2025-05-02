@@ -37,6 +37,7 @@ def perfil(nome):
         }
 
         MUSICA.append(nova_musica)
+        return redirect(url_for('usuario.perfil', nome = nome))
 
-    return render_template('lista_musica.html',nome = nome)
+    return render_template('lista_musica.html',nome = nome, musicaLista = MUSICA)
 
