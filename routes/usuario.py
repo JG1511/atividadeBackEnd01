@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template,redirect,url_for
-from database.usuario import USUARIO
+from database.usuario import USUARIO,MUSICA
 
 usuario_route = Blueprint('usuario', __name__)
 
@@ -25,6 +25,18 @@ def validacaoLogin():
     
     return render_template('forms.html', erro="Email ou senha incorretos")
 
-@usuario_route.route('/perfil/<nome>')
+@usuario_route.route('/perfil/<nome>', methods = ['GET','POST'])
 def perfil(nome):
+    if request.method == 'POST':
+
+        nomeDaMusica = request.form.get('nome')
+
+        nova_musica = {
+            "id": len(MUSICA) + 1,
+            "nome" : nomeDaMusica
+        }
+
+        MUSICA.append(nova_musica)
+
     return render_template('lista_musica.html',nome = nome)
+
