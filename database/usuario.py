@@ -4,3 +4,7 @@ USUARIO = [
     {"id": 2,"nome": "Daniel","email": "daniel34@gmail.com", "senha":123},
     {"id": 3,"nome": "Cerol" ,"email": "cerola@gmail.com", "senha":123}
 ]
+
+MUSICA = [
+    {"id" : 1, "nome":"Rap do minecraft"},
+]
