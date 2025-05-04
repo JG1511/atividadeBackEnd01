@@ -46,3 +46,32 @@ def deletarMusica(musica_id):
     global MUSICA
     MUSICA = [musica for musica in MUSICA if musica['id'] != musica_id]
     return '', 204
+
+# @usuario_route.route('/<int:musica_id>/edit')
+# def form_editar_musica(musica_id):
+#     musica = None
+
+#     for m in MUSICA:
+#         if m['id'] == musica_id:
+#             musica = m
+    
+#     return render_template('lista_musica.html',musica = musica)
+
+# @usuario_route.route('/<int:musica_id>/update', methods = ['PUT'])
+# def atualizar_musica(musica_id):
+#     musica_editado = None
+
+#     # data = request.json
+#     data = request.form.get('nome')
+
+#     for m in MUSICA:
+#         if m['id'] == musica_id:
+#             m['nome'] = data['nome']
+
+#             musica_editado = m
+    
+#     return render_template('lista_musica.html', musica = musica_editado)
+
+@usuario_route.route('/logout')
+def logout():
+    return redirect(url_for('usuario.login_usuario'))
