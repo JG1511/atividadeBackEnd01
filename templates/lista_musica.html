@@ -8,7 +8,7 @@
   </head>
   <body>
 
-    <!-- Navbar -->
+   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-md">
         <a class="navbar-brand" href="#">Bem-vindo, {{ nome }}</a>
@@ -18,7 +18,7 @@
 
     <div class="container mt-4">
 
-      <!-- Formulário de cadastro -->
+    
       <div class="card p-4 mb-4 shadow-sm">
         <h4 class="card-title">Cadastrar Nova Música</h4>
         <form action="{{ url_for('usuario.perfil', nome = nome) }}" method="post">
@@ -30,7 +30,7 @@
         </form>
       </div>
 
-      <!-- Tabela de músicas -->
+     
       <div class="card shadow-sm">
         <div class="card-body">
           <h5 class="card-title">Lista de Músicas</h5>
