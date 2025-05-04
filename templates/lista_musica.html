@@ -20,7 +20,7 @@
       <!-- Formulário de cadastro -->
       <div class="card p-4 mb-4 shadow-sm">
         <h4 class="card-title">Cadastrar Nova Música</h4>
-        <form action="{{ url_for('usuario.perfil', nome=nome) }}" method="post">
+        <form action="{{ url_for('usuario.perfil', nome = nome) }}" method="post">
           <div class="mb-3">
             <label for="nome" class="form-label">Nome da Música</label>
             <input type="text" class="form-control" id="nome" name="nome" required>
@@ -48,7 +48,7 @@
                 <td>{{ musica.nome }}</td>
                 <td>
                   <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                  <button type="button" class="btn btn-danger btn-sm">Deletar</button>
+                  <button type="button" class="btn btn-danger btn-sm" c-delete="{{ url_for('usuario.deletarMusica', musica_id = musica.id)}}" c-remove-closest="tr">Deletar</button>
                 </td>
               </tr>
               {% endfor %}
@@ -59,6 +59,7 @@
 
     </div>
 
+    <script src="{{ url_for('static',filename = 'cru.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   </body>
 </html>
