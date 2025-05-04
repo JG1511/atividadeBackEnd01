@@ -41,3 +41,8 @@ def perfil(nome):
 
     return render_template('lista_musica.html',nome = nome, musicaLista = MUSICA)
 
+@usuario_route.route('/<int:musica_id>/delete', methods = ['DLETE'])
+def deletarMusica(musica_id):
+    global MUSICA
+    MUSICA = [musica for musica in MUSICA if musica['id'] != musica_id]
+
