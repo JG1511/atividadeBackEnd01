@@ -27,19 +27,31 @@ def validacaoLogin():
 
 @usuario_route.route('/perfil/<nome>', methods = ['GET','POST'])
 def perfil(nome):
+    
+    musica_editada = None
+
+    musica_id = request.args.get('musica_id') # O args consulta(query parameters) na URL. Parâmetros que vem depois da ? na url 
+    
+    if musica_id:
+        musica_editada = next((m for m in MUSICA if m['id'] == int(musica_id)),None)
+    
     if request.method == 'POST':
 
         nomeDaMusica = request.form.get('nome')
 
-        nova_musica = {
-            "id": len(MUSICA) + 1,
-            "nome" : nomeDaMusica
-        }
+        if musica_editada:
+            musica_editada['nome'] = nomeDaMusica
+        else:
+            nova_musica = {
+                "id": len(MUSICA) + 1,
+                "nome" : nomeDaMusica
+            }
 
-        MUSICA.append(nova_musica)
+            MUSICA.append(nova_musica)
+
         return redirect(url_for('usuario.perfil', nome = nome))
 
-    return render_template('lista_musica.html',nome = nome, musicaLista = MUSICA)
+    return render_template('lista_musica.html',nome = nome, musicaLista = MUSICA, musicaEditada=musica_editada)
 
 @usuario_route.route('/<int:musica_id>/delete', methods = ['DELETE'])
 def deletarMusica(musica_id):
