@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template,redirect,url_for
+from flask import Blueprint, request, render_template,redirect,url_for,flash
 from database.usuario import USUARIO,MUSICA
 
 usuario_route = Blueprint('usuario', __name__)
@@ -59,6 +59,15 @@ def deletarMusica(musica_id):
     MUSICA = [musica for musica in MUSICA if musica['id'] != musica_id]
     return '', 204
 
+# @usuario_route.route('/<int:musica_id>/sobre', methods = ['GET'])
+# def pesquisaSobreMusica(musica_id):
+#     nome_pesquisa = None
+
+#     for m in MUSICA:
+#         if m['id'] == musica_id:
+#             nome_pesquisa = m['nome']
+    
+#     flash(nome_pesquisa)
 # @usuario_route.route('/<int:musica_id>/edit')
 # def form_editar_musica(musica_id):
 #     musica = None
