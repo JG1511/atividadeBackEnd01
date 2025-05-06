@@ -20,13 +20,16 @@
 
     
       <div class="card p-4 mb-4 shadow-sm">
-        <h4 class="card-title">Cadastrar Nova Música</h4>
-        <form action="{{ url_for('usuario.perfil', nome = nome) }}" method="post">
+        <h4 class="card-title">  {{ 'Editar Música' if musicaEditada else 'Cadastrar Nova Música' }}</h4>
+        <form action="{{ url_for('usuario.perfil', nome=nome) }}{% if musicaEditada %}?musica_id={{ musicaEditada.id }}{% endif %}" method="post">
+          {% if musicaEditada %}
+            <input type="hidden" name="musica_id" value="{{ musicaEditada.id }}">
+          {%endif%}
           <div class="mb-3">
             <label for="nome" class="form-label">Nome da Música</label>
             <input type="text" class="form-control" id="nome" name="nome" required>
           </div>
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <button type="submit" class="btn btn-primary"> {{ 'Salvar Alterações' if musicaEditada else 'Cadastrar' }}</button>
         </form>
       </div>
 
@@ -48,7 +51,7 @@
                 <th scope="row">{{ musica.id }}</th>
                 <td>{{ musica.nome }}</td>
                 <td>
-                  <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                  <a href="{{ url_for('usuario.perfil', nome=nome) }}?musica_id={{ musica.id }}" class="btn btn-warning btn-sm">Editar</a>
                   <button type="button" class="btn btn-danger btn-sm" c-delete="{{ url_for('usuario.deletarMusica', musica_id = musica.id)}}" c-remove-closest="tr">Deletar</button>
                 </td>
               </tr>
